@@ -1,16 +1,7 @@
 import { useEffect } from "react";
 import { X, MapPin, Clock, Mountain, CheckCircle2, Compass } from "lucide-react";
 import "./DestinationModal.css";
-
-const DESTINATION_IMAGES = {
-  "Dharamshala": "https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1000&q=80",
-  "Manali": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1000&q=80",
-  "Rishikesh": "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1000&q=80",
-  "Dalhousie": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80",
-  "Kasol": "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1000&q=80"
-};
-
-const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80";
+import { destinationImages, fallbackDestinationImage } from "../data/destinationImages";
 
 function DestinationModal({ destination, onClose, onPlanTrip }) {
   useEffect(() => {
@@ -23,7 +14,7 @@ function DestinationModal({ destination, onClose, onPlanTrip }) {
 
   if (!destination) return null;
 
-  const imgUrl = DESTINATION_IMAGES[destination.name] || FALLBACK_IMAGE;
+  const imgUrl = destinationImages[destination.name] || fallbackDestinationImage;
 
   return (
     <div
@@ -49,7 +40,7 @@ function DestinationModal({ destination, onClose, onPlanTrip }) {
             alt={`High resolution view of ${destination.name}`}
             onError={(e) => {
               e.currentTarget.onerror = null;
-              e.currentTarget.src = FALLBACK_IMAGE;
+              e.currentTarget.src = fallbackDestinationImage;
             }}
           />
           <div className="modal-image-overlay">

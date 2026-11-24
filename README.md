@@ -235,6 +235,15 @@ To run both services simultaneously, keep two terminal tabs open:
 
 ## 📡 API Reference
 
+### Authentication
+
+- `POST /auth/signup` creates an account and starts a session.
+- `POST /auth/login` starts a session for an existing account.
+- `GET /auth/me` restores the current browser session.
+- `POST /auth/logout` revokes the session and clears its cookie.
+
+Passwords are stored as salted PBKDF2 hashes. The server stores only a hash of each random session token; the browser receives it in an HttpOnly cookie that expires after 30 minutes. The local SQLite database is created at `backend/auth.db` and is excluded from Git. When deploying behind HTTPS, set `AUTH_COOKIE_SECURE=true`.
+
 ### Health Check
 
 ```http

@@ -1,5 +1,8 @@
 # Python virtual environment and bytecode
 backend/venv/
+backend/auth.db
+backend/auth.db-shm
+backend/auth.db-wal
 venv/
 ENV/
 env/

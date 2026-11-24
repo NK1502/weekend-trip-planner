@@ -498,16 +498,6 @@
   transform: scale(1.06);
 }
 
-/* Shimmer Loading Background fallback */
-.image-shimmer-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, #E2E8F0 0%, #F1F5F9 50%, #E2E8F0 100%);
-  background-size: 200% 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
 /* Card Image Overlay Badges */
 .card-overlay-badge {
   position: absolute;

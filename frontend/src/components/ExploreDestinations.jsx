@@ -16,16 +16,7 @@ import {
   X
 } from "lucide-react";
 import "./ExploreDestinations.css";
-
-const DESTINATION_IMAGES = {
-  "Dharamshala": "https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1000&q=80",
-  "Manali": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1000&q=80",
-  "Rishikesh": "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1000&q=80",
-  "Dalhousie": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80",
-  "Kasol": "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1000&q=80"
-};
-
-const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80";
+import { destinationImages, fallbackDestinationImage } from "../data/destinationImages";
 
 const SAMPLE_DESTINATIONS = [
   {
@@ -82,6 +73,17 @@ const SAMPLE_DESTINATIONS = [
     highlight: "Parvati River & Kheerganga Trail",
     activities: ["mountains", "trekking", "peaceful", "nature"],
     description: "A scenic riverside hamlet in Parvati Valley, widely celebrated for pristine mountain air, bohemian riverside cafes, and trails to natural hot springs."
+  },
+  {
+    name: "Shimla",
+    state: "Himachal Pradesh",
+    latitude: 31.1048,
+    longitude: 77.1734,
+    travel_hours: 9,
+    rating: 4.5,
+    highlight: "Pine Walks & The Ridge",
+    activities: ["mountains", "peaceful", "nature", "trekking"],
+    description: "A hillside capital of cedar lanes, colonial-era landmarks, and far-reaching Himalayan views."
   }
 ];
 
@@ -120,7 +122,7 @@ function ExploreDestinations({ onSelectDestination, onPlanForDestination, onPlan
           <div className="explore-hero-text">
             <div className="explore-hero-badge">
               <Sparkles size={14} className="sparkle-icon" aria-hidden="true" />
-              <span>Handpicked Weekend Escapes • 4–7 Hrs Away</span>
+              <span>Handpicked Weekend Escapes • 4–9 Hrs Away</span>
             </div>
 
             <h1 className="explore-hero-title">
@@ -158,11 +160,11 @@ function ExploreDestinations({ onSelectDestination, onPlanForDestination, onPlan
             <div className="explore-hero-stats">
               <div className="hero-stat-item">
                 <Mountain size={16} className="stat-icon" aria-hidden="true" />
-                <span><strong>5+</strong> Scenic Hill Stations</span>
+                <span><strong>6</strong> Scenic Hill Stations</span>
               </div>
               <div className="hero-stat-item">
                 <Clock size={16} className="stat-icon" aria-hidden="true" />
-                <span><strong>≤ 7 hrs</strong> Travel Time</span>
+                <span><strong>≤ 9 hrs</strong> Travel Time</span>
               </div>
               <div className="hero-stat-item">
                 <Sun size={16} className="stat-icon" aria-hidden="true" />
@@ -179,12 +181,12 @@ function ExploreDestinations({ onSelectDestination, onPlanForDestination, onPlan
           <div className="explore-hero-visual" aria-hidden="true">
             <div className="hero-visual-card main-card">
               <img
-                src={DESTINATION_IMAGES["Manali"]}
+                src={destinationImages.Manali}
                 alt="Manali landscape"
                 loading="eager"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
-                  e.currentTarget.src = FALLBACK_IMAGE;
+                  e.currentTarget.src = fallbackDestinationImage;
                 }}
               />
               <div className="visual-card-content">
@@ -285,7 +287,7 @@ function ExploreDestinations({ onSelectDestination, onPlanForDestination, onPlan
       ) : (
         <div className="explore-grid" role="list">
           {filteredDestinations.map((dest) => {
-            const imgUrl = DESTINATION_IMAGES[dest.name] || FALLBACK_IMAGE;
+            const imgUrl = destinationImages[dest.name] || fallbackDestinationImage;
 
             return (
               <article
@@ -301,11 +303,9 @@ function ExploreDestinations({ onSelectDestination, onPlanForDestination, onPlan
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = FALLBACK_IMAGE;
+                      e.currentTarget.src = fallbackDestinationImage;
                     }}
                   />
-                  <div className="image-shimmer-bg" aria-hidden="true"></div>
-
                   {/* Top Badges */}
                   <div className="card-overlay-badge rating-badge">
                     <Star size={13} fill="#F59E0B" color="#F59E0B" aria-hidden="true" />

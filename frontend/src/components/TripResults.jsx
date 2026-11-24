@@ -1,14 +1,7 @@
 import { useState } from "react";
 import { Sparkles, MapPin, Star, Clock, CloudSun, AlertTriangle, Calendar, BookmarkCheck, Check, Share2, ArrowRight } from "lucide-react";
 import "./TripResults.css";
-
-const DESTINATION_IMAGES = {
-  "Dharamshala": "https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=800&q=80",
-  "Manali": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80",
-  "Rishikesh": "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=800&q=80",
-  "Dalhousie": "https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=800&q=80",
-  "Kasol": "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80"
-};
+import { destinationImages, fallbackDestinationImage } from "../data/destinationImages";
 
 function TripResults({ result, onSaveTrip, savedTripIds = [] }) {
   const [copied, setCopied] = useState(false);
@@ -58,7 +51,7 @@ function TripResults({ result, onSaveTrip, savedTripIds = [] }) {
 
         <div className="recommendations-grid">
           {result.destinations?.map((d, index) => {
-            const imgUrl = DESTINATION_IMAGES[d.name] || DESTINATION_IMAGES["Dharamshala"];
+            const imgUrl = destinationImages[d.name] || fallbackDestinationImage;
             const isWithinBudget = d.cost?.status === "within_budget";
 
             return (
@@ -66,7 +59,7 @@ function TripResults({ result, onSaveTrip, savedTripIds = [] }) {
                 
                 {/* Image Header */}
                 <div className="dest-img-box">
-                  <img src={imgUrl} alt={`Landscape view of ${d.name}`} loading="lazy" />
+                  <img src={imgUrl} alt={`Landscape view of ${d.name}`} loading="lazy" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = fallbackDestinationImage; }} />
                   <div className="rank-badge">#{index + 1} Best Match</div>
                   <div className="rating-badge">
                     <Star size={13} fill="#D97706" color="#D97706" aria-hidden="true" />

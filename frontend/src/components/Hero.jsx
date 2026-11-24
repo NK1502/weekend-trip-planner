@@ -1,7 +1,6 @@
 import { Sparkles, MapPin, Compass, ShieldCheck, Sun, DollarSign, ArrowRight } from "lucide-react";
 import "./Hero.css";
-
-const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80";
+import { destinationImages, fallbackDestinationImage } from "../data/destinationImages";
 
 function Hero({ onStartPlanning, onExplore }) {
   const featuredHighlights = [
@@ -10,21 +9,21 @@ function Hero({ onStartPlanning, onExplore }) {
       state: "Himachal Pradesh",
       tag: "Popular Choice",
       rating: "4.5 ⭐",
-      img: "https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=600&q=80"
+      img: destinationImages.Dharamshala
     },
     {
       title: "Manali",
       state: "Himachal Pradesh",
       tag: "Top Rated",
       rating: "4.6 ⭐",
-      img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80"
+      img: destinationImages.Manali
     },
     {
       title: "Rishikesh",
       state: "Uttarakhand",
       tag: "Adventure Hub",
       rating: "4.4 ⭐",
-      img: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=600&q=80"
+      img: destinationImages.Rishikesh
     }
   ];
 
@@ -99,7 +98,7 @@ function Hero({ onStartPlanning, onExplore }) {
                   loading="lazy"
                   onError={(e) => {
                     e.currentTarget.onerror = null;
-                    e.currentTarget.src = FALLBACK_IMAGE;
+                    e.currentTarget.src = fallbackDestinationImage;
                   }}
                 />
                 <span className="card-badge">{dest.tag}</span>

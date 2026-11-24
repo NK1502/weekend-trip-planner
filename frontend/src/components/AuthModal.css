@@ -18,7 +18,7 @@
   background: var(--bg-surface);
   width: 100%;
   max-width: 420px;
-  border-radius: var(--radius-lg);
+  border-radius: 8px;
   padding: 32px;
   box-shadow: var(--shadow-lg);
 }
@@ -32,7 +32,7 @@
   color: var(--text-muted);
   width: 30px;
   height: 30px;
-  border-radius: var(--radius-full);
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +47,7 @@
 .auth-logo {
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-md);
+  border-radius: 7px;
   background: var(--navy-dark);
   display: flex;
   align-items: center;
@@ -93,7 +93,7 @@
 .auth-input-group input {
   padding: 11px 14px;
   border: 1px solid var(--border-medium);
-  border-radius: var(--radius-md);
+  border-radius: 5px;
   font-family: inherit;
   font-size: 0.92rem;
   outline: none;
@@ -104,6 +104,14 @@
   box-shadow: 0 0 0 3px var(--sky-glow);
 }
 
+.auth-error {
+  border-left: 3px solid #bd6e56;
+  padding: 9px 11px;
+  background: #fbefeb;
+  color: #934a3b;
+  font-size: 0.84rem;
+}
+
 .btn-auth-submit {
   display: flex;
   align-items: center;
@@ -111,7 +119,7 @@
   gap: 8px;
   padding: 12px;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 5px;
   background: var(--navy-dark);
   color: white;
   font-weight: 800;
@@ -122,6 +130,11 @@
 
 .btn-auth-submit:hover {
   background: var(--navy-medium);
+}
+
+.btn-auth-submit:disabled {
+  cursor: wait;
+  opacity: .7;
 }
 
 .auth-toggle-row {

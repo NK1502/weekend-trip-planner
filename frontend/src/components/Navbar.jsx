@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Compass, MapPin, Calendar, Heart, User, Menu, X, Sparkles } from "lucide-react";
+import { Compass, MapPin, Calendar, Heart, User, Menu, X, Sparkles, LogOut } from "lucide-react";
 import "./Navbar.css";
 
-function Navbar({ activeTab, setActiveTab, onOpenAuth }) {
+function Navbar({ activeTab, setActiveTab, onOpenAuth, user, onSignOut }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -67,13 +67,14 @@ function Navbar({ activeTab, setActiveTab, onOpenAuth }) {
             <span>Plan Trip</span>
           </button>
 
-          <button 
+          <button
             className="btn-user-auth"
-            onClick={onOpenAuth}
-            aria-label="Sign In or Account"
+            onClick={user ? onSignOut : onOpenAuth}
+            aria-label={user ? `Sign out ${user.name}` : "Sign in"}
+            title={user ? `Signed in as ${user.email}` : undefined}
           >
-            <User size={17} aria-hidden="true" />
-            <span className="auth-label">Sign In</span>
+            {user ? <LogOut size={16} aria-hidden="true" /> : <User size={17} aria-hidden="true" />}
+            <span className="auth-label">{user ? "Sign out" : "Sign in"}</span>
           </button>
 
           {/* Mobile Menu Toggle */}
@@ -109,15 +110,16 @@ function Navbar({ activeTab, setActiveTab, onOpenAuth }) {
 
           <div className="mobile-drawer-divider" />
 
-          <button 
+          <button
             className="mobile-auth-btn"
             onClick={() => {
-              onOpenAuth();
+              if (user) onSignOut();
+              else onOpenAuth();
               setMobileMenuOpen(false);
             }}
           >
-            <User size={18} aria-hidden="true" />
-            <span>Sign In / Register</span>
+            {user ? <LogOut size={18} aria-hidden="true" /> : <User size={18} aria-hidden="true" />}
+            <span>{user ? "Sign out" : "Sign in / Register"}</span>
           </button>
         </nav>
       )}
